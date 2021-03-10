@@ -767,9 +767,9 @@ class Parser(object):
 		if not perform(postPrefix, *args, **kwargs):
 
 			# Allow for post-process function in the emit info.
-			if callable(self.emits[node.key]):
+			if node.key and callable(self.emits[node.key]):
 				self.emits[node.key](node, *args, **kwargs)
 
 			# Else, just dump the emitting value.
-			elif self.emits[node.key]:
+			elif node.key and self.emits[node.key]:
 				print(self.emits[node.key])
